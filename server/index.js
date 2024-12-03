@@ -36,6 +36,15 @@ app.delete(
   createDeleteHandler('englishclub', '/api/english_club/questions/[id]')
 );
 
+const lectoriumHandlers = createApiHandlers('lectorium');
+
+app.get('/api/lectorium/questions', lectoriumHandlers.GET);
+app.post('/api/lectorium/questions', lectoriumHandlers.POST);
+app.delete(
+  '/api/lectorium/questions/:id',
+  createDeleteHandler('lectorium', '/api/lectorium/questions/[id]')
+);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

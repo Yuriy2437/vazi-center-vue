@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
 import EnglishClub from '../views/EnglishClub.vue';
+import Lectorium from '../views/Lectorium.vue';
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/english_club',
     name: 'EnglishClub',
     component: EnglishClub,
+  },
+  {
+    path: '/lectorium',
+    name: 'Lectorium',
+    component: Lectorium,
   },
 ];
 
