@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
+import EnglishClub from '../views/EnglishClub.vue';
 
 const routes = [
   {
@@ -19,8 +20,11 @@ const routes = [
     name: 'About',
     component: About,
   },
-
-  // Добавьте другие маршруты по необходимости
+  {
+    path: '/english_club',
+    name: 'EnglishClub',
+    component: EnglishClub,
+  },
 ];
 
 const router = createRouter({
