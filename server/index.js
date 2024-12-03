@@ -45,6 +45,24 @@ app.delete(
   createDeleteHandler('lectorium', '/api/lectorium/questions/[id]')
 );
 
+const psychologyClubHandlers = createApiHandlers('psychology_club');
+
+app.get('/api/psychology_club/questions', psychologyClubHandlers.GET);
+app.post('/api/psychology_club/questions', psychologyClubHandlers.POST);
+app.delete(
+  '/api/psychology_club/questions/:id',
+  createDeleteHandler('psychology_club', '/api/psychology_club/questions/[id]')
+);
+
+const kidsClubHandlers = createApiHandlers('kids_club');
+
+app.get('/api/kids_club/questions', kidsClubHandlers.GET);
+app.post('/api/kids_club/questions', kidsClubHandlers.POST);
+app.delete(
+  '/api/kids_club/questions/:id',
+  createDeleteHandler('kids_club', '/api/kids_club/questions/[id]')
+);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -4,6 +4,8 @@ import Menu from '../views/Menu.vue';
 import About from '../views/About.vue';
 import EnglishClub from '../views/EnglishClub.vue';
 import Lectorium from '../views/Lectorium.vue';
+import PsychologyClub from '../views/PsychologyClub.vue';
+import KidsClub from '../views/KidsClub.vue';
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path: '/lectorium',
     name: 'Lectorium',
     component: Lectorium,
+  },
+  {
+    path: '/psychology_club',
+    name: 'PsychologyClub',
+    component: PsychologyClub,
+  },
+  {
+    path: '/kids_club',
+    name: 'KidsClub',
+    component: KidsClub,
   },
 ];
 
