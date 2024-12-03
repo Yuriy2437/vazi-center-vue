@@ -63,6 +63,15 @@ app.delete(
   createDeleteHandler('kids_club', '/api/kids_club/questions/[id]')
 );
 
+const musicClubHandlers = createApiHandlers('music_club');
+
+app.get('/api/music_club/questions', musicClubHandlers.GET);
+app.post('/api/music_club/questions', musicClubHandlers.POST);
+app.delete(
+  '/api/music_club/questions/:id',
+  createDeleteHandler('music_club', '/api/music_club/questions/[id]')
+);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

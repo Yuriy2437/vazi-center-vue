@@ -6,6 +6,8 @@ import EnglishClub from '../views/EnglishClub.vue';
 import Lectorium from '../views/Lectorium.vue';
 import PsychologyClub from '../views/PsychologyClub.vue';
 import KidsClub from '../views/KidsClub.vue';
+import MusicClub from '../views/MusicClub.vue';
+import Feedback from '../views/Feedback.vue';
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: '/kids_club',
     name: 'KidsClub',
     component: KidsClub,
+  },
+  {
+    path: '/music_club',
+    name: 'MusicClub',
+    component: MusicClub,
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback,
   },
 ];
 
