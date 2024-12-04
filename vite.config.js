@@ -16,4 +16,12 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    assetsDir: 'images',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
+    },
+  },
 });
