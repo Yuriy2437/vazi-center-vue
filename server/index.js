@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import { createApiHandlers } from './api-handlers.js';
 import { createDeleteHandler } from './api2-handlers.js';
 
@@ -16,7 +17,12 @@ console.log('__dirname:', __dirname);
 console.log('MONGODB_URI from index.js:', MONGODB_URI);
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
 
 // const questionsHandlers = createApiHandlers('questions');
 
