@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "node --env-file=.env server/index.js",
-    "start": "node server/index.js"
+    "start": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
     "cors": "^2.8.5",

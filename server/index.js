@@ -24,61 +24,61 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, '../dist')));
+// app.use(express.static(path.join(__dirname, '../dist')));
 
-const questionsHandlers = createApiHandlers('questions');
+// const questionsHandlers = createApiHandlers('questions');
 
-app.get('/api/about/questions', questionsHandlers.GET);
-app.post('/api/about/questions', questionsHandlers.POST);
-app.delete(
-  '/api/about/questions/:id',
-  createDeleteHandler('questions', '/api/about/questions/[id]')
-);
+// app.get('/api/about/questions', questionsHandlers.GET);
+// app.post('/api/about/questions', questionsHandlers.POST);
+// app.delete(
+//   '/api/about/questions/:id',
+//   createDeleteHandler('questions', '/api/about/questions/[id]')
+// );
 
-const englishClubHandlers = createApiHandlers('englishclub');
+// const englishClubHandlers = createApiHandlers('englishclub');
 
-app.get('/api/english_club/questions', englishClubHandlers.GET);
-app.post('/api/english_club/questions', englishClubHandlers.POST);
-app.delete(
-  '/api/english_club/questions/:id',
-  createDeleteHandler('englishclub', '/api/english_club/questions/[id]')
-);
+// app.get('/api/english_club/questions', englishClubHandlers.GET);
+// app.post('/api/english_club/questions', englishClubHandlers.POST);
+// app.delete(
+//   '/api/english_club/questions/:id',
+//   createDeleteHandler('englishclub', '/api/english_club/questions/[id]')
+// );
 
-const lectoriumHandlers = createApiHandlers('lectorium');
+// const lectoriumHandlers = createApiHandlers('lectorium');
 
-app.get('/api/lectorium/questions', lectoriumHandlers.GET);
-app.post('/api/lectorium/questions', lectoriumHandlers.POST);
-app.delete(
-  '/api/lectorium/questions/:id',
-  createDeleteHandler('lectorium', '/api/lectorium/questions/[id]')
-);
+// app.get('/api/lectorium/questions', lectoriumHandlers.GET);
+// app.post('/api/lectorium/questions', lectoriumHandlers.POST);
+// app.delete(
+//   '/api/lectorium/questions/:id',
+//   createDeleteHandler('lectorium', '/api/lectorium/questions/[id]')
+// );
 
-const psychologyClubHandlers = createApiHandlers('psychology_club');
+// const psychologyClubHandlers = createApiHandlers('psychology_club');
 
-app.get('/api/psychology_club/questions', psychologyClubHandlers.GET);
-app.post('/api/psychology_club/questions', psychologyClubHandlers.POST);
-app.delete(
-  '/api/psychology_club/questions/:id',
-  createDeleteHandler('psychology_club', '/api/psychology_club/questions/[id]')
-);
+// app.get('/api/psychology_club/questions', psychologyClubHandlers.GET);
+// app.post('/api/psychology_club/questions', psychologyClubHandlers.POST);
+// app.delete(
+//   '/api/psychology_club/questions/:id',
+//   createDeleteHandler('psychology_club', '/api/psychology_club/questions/[id]')
+// );
 
-const kidsClubHandlers = createApiHandlers('kids_club');
+// const kidsClubHandlers = createApiHandlers('kids_club');
 
-app.get('/api/kids_club/questions', kidsClubHandlers.GET);
-app.post('/api/kids_club/questions', kidsClubHandlers.POST);
-app.delete(
-  '/api/kids_club/questions/:id',
-  createDeleteHandler('kids_club', '/api/kids_club/questions/[id]')
-);
+// app.get('/api/kids_club/questions', kidsClubHandlers.GET);
+// app.post('/api/kids_club/questions', kidsClubHandlers.POST);
+// app.delete(
+//   '/api/kids_club/questions/:id',
+//   createDeleteHandler('kids_club', '/api/kids_club/questions/[id]')
+// );
 
-const musicClubHandlers = createApiHandlers('music_club');
+// const musicClubHandlers = createApiHandlers('music_club');
 
-app.get('/api/music_club/questions', musicClubHandlers.GET);
-app.post('/api/music_club/questions', musicClubHandlers.POST);
-app.delete(
-  '/api/music_club/questions/:id',
-  createDeleteHandler('music_club', '/api/music_club/questions/[id]')
-);
+// app.get('/api/music_club/questions', musicClubHandlers.GET);
+// app.post('/api/music_club/questions', musicClubHandlers.POST);
+// app.delete(
+//   '/api/music_club/questions/:id',
+//   createDeleteHandler('music_club', '/api/music_club/questions/[id]')
+// );
 
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
@@ -86,28 +86,25 @@ app.delete(
 // });
 
 // Обслуживание статических файлов
-// app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
-// const collections = [
-//   'questions',
-//   'englishclub',
-//   'lectorium',
-//   'psychology_club',
-//   'kids_club',
-//   'music_club',
-// ];
+const collections = [
+  { name: 'questions', path: 'about' },
+  { name: 'englishclub', path: 'english_club' },
+  { name: 'lectorium', path: 'lectorium' },
+  { name: 'psychology_club', path: 'psychology_club' },
+  { name: 'kids_club', path: 'kids_club' },
+  { name: 'music_club', path: 'music_club' },
+];
 
-// collections.forEach((collection) => {
-//   const handlers = createApiHandlers(collection);
-//   const apiPath = `/api/${collection.replace('_', '-')}/questions`;
+collections.forEach(({ name, path }) => {
+  const handlers = createApiHandlers(name);
+  const apiPath = `/api/${path}/questions`;
 
-//   app.get(apiPath, handlers.GET);
-//   app.post(apiPath, handlers.POST);
-//   app.delete(
-//     `${apiPath}/:id`,
-//     createDeleteHandler(collection, `${apiPath}/[id]`)
-//   );
-// });
+  app.get(apiPath, handlers.GET);
+  app.post(apiPath, handlers.POST);
+  app.delete(`${apiPath}/:id`, createDeleteHandler(name, `${apiPath}/[id]`));
+});
 
 // Обработка всех остальных запросов
 app.get('*', (req, res) => {
