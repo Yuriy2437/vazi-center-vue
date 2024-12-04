@@ -18,7 +18,8 @@ export default defineConfig({
     },
   },
   build: {
-    assetsDir: 'images',
+    outDir: 'dist',
+    assetsDir: '', // Изменено с 'images' на пустую строку
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
