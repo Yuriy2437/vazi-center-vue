@@ -125,6 +125,9 @@ const handleEntranceForAll = () => {
 }
 
 .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.5rem;
   margin-bottom: 2rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
