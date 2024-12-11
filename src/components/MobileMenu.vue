@@ -1,7 +1,9 @@
 <template>
   <div>
-    <!-- Кнопка Menu -->
-    <button class="menu-button" @click="toggleMenu">Menu</button>
+    <!-- Кнопка Menu, скрытая на страницах Home и Menu -->
+    <button v-if="showMenuButton" class="menu-button" @click="toggleMenu">
+      Menu
+    </button>
 
     <!-- Модальное окно -->
     <div :class="['menu-modal', { show: isMenuOpen }]">
@@ -25,18 +27,30 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+
 export default {
+  setup() {
+    const route = useRoute();
+
+    const showMenuButton = computed(() => {
+      return !['/', '/menu'].includes(route.path);
+    });
+
+    return { showMenuButton };
+  },
   data() {
     return {
-      isMenuOpen: false, // Состояние модального окна
+      isMenuOpen: false,
     };
   },
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen; // Переключение состояния окна
+      this.isMenuOpen = !this.isMenuOpen;
     },
     closeMenu() {
-      this.isMenuOpen = false; // Закрытие окна
+      this.isMenuOpen = false;
     },
   },
 };
@@ -45,7 +59,6 @@ export default {
 <style scoped>
 @media (max-width: 800px) {
   .menu-button {
-    /* position: sticky; */
     width: 100%;
     top: 0;
     left: 0;
