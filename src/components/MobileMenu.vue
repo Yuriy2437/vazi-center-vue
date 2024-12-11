@@ -13,7 +13,7 @@
       <a href="/music_club" @click="closeMenu">Music Club</a>
       <a href="/psychology_club" @click="closeMenu">Psychology Club</a>
       <a href="/kids_club" @click="closeMenu">Kids Club</a>
-      <a href="/feedbacks" @click="closeMenu">All Feedbacks</a>
+      <a href="/feedback" @click="closeMenu">All Feedbacks</a>
       <a href="/" @click="closeMenu">Home</a>
 
       <button
